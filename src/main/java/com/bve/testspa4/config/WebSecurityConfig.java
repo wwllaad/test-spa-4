@@ -33,6 +33,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                             "/webjars/**").permitAll()
                     .antMatchers("/user/**").access("hasRole('USER') or hasRole('ADMIN')")
                     .antMatchers("/admin/**").hasRole("ADMIN")
+                    .antMatchers("/api/banks/**").permitAll()
                     .anyRequest().authenticated()
                 .and()
                 .formLogin()

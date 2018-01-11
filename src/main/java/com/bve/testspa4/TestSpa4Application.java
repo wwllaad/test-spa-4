@@ -1,5 +1,7 @@
 package com.bve.testspa4;
 
+import com.bve.testspa4.domain.Bank;
+import com.bve.testspa4.domain.BankRepository;
 import com.bve.testspa4.domain.User;
 import com.bve.testspa4.domain.UserRepository;
 import org.springframework.boot.CommandLineRunner;
@@ -15,13 +17,19 @@ public class TestSpa4Application {
 	}
 
 	@Bean
-	public CommandLineRunner studentDemo(UserRepository urepository) {
+	public CommandLineRunner studentDemo(UserRepository userRepositoryrepository, BankRepository bankRepository) {
 		return (args) -> {
 			User user1 = new User("user", "$2a$06$3jYRJrg0ghaaypjZ/.g4SethoeA51ph3UD4kZi9oPkeMTpjKU5uo6", "ROLE_USER");
 			User user2 = new User("admin", "$2a$10$0MMwY.IQqpsVc1jC8u7IJ.2rT8b0Cd3b3sfIBGV2zfgnPGtT4r0.C", "ROLE_ADMIN");
-			urepository.save(user1);
-			urepository.save(user2);
+			userRepositoryrepository.save(user1);
+			userRepositoryrepository.save(user2);
 
+			Bank bank1 = new Bank("ABR");
+			Bank bank2 = new Bank("RNCB");
+			Bank bank3 = new Bank("Genbank");
+			bankRepository.save(bank1);
+			bankRepository.save(bank2);
+			bankRepository.save(bank3);
 		};
 	}
 }
