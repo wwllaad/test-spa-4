@@ -9,6 +9,8 @@
 <div layout:fragment="content" th:remove="tag">
     <h1>This is ADMIN a secured page!</h1>
     <p><a href="/" th:href="@{/}">Back to home page</a></p>
+    <div id="adminview"/>
+    <script th:src="@{/client/public/admin.js}" type="text/javascript"/>
 </div>
 </body>
 </html>
