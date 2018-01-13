@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Bank from './Bank.jsx'
+import BankTable from './BankTable.jsx'
 
 class Userview extends React.Component {
     constructor(props) {
@@ -12,7 +14,6 @@ class Userview extends React.Component {
         this.loadBanksFromServer();
     }
 
-    // Load students from database
     loadBanksFromServer() {
         fetch('http://localhost:8080/api/banks',
             {credentials: 'same-origin'})
@@ -30,46 +31,5 @@ class Userview extends React.Component {
             </div>
         );
     }
-}
-
-class BankTable extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
-    render() {
-        var banks = this.props.banks.map(bank =>
-            <Bank key={bank._links.self.href} bank={bank}/>
-        );
-
-        return (
-
-            <div>
-                <table>
-                    <thead>
-                    <tr>
-                        <th>Name</th><th> </th>
-                    </tr>
-                    </thead>
-                    <tbody>{banks}</tbody>
-                </table>
-            </div>
-        );
-    }
-}
-
-class Bank extends React.Component {
-    constructor(props) {
-        super(props);
-
-            }
-
-    render() {
-        return (
-            <tr>
-                <td>{this.props.bank.name}</td>
-            </tr>
-        );
-   }
 }
 export default Userview;

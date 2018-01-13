@@ -1,5 +1,12 @@
 import React, { Component } from 'react';
-import SkyLight from 'react-skylight';
+// import '../../../css/App.css';
+// import { Navbar, NavItem, Nav, Grid, Row, Col } from "react-bootstrap";
+// import "bootstrap/dist/css/bootstrap.css"
+// import Alert from 'react-s-alert';
+// import 'react-s-alert/dist/s-alert-default.css';
+// import 'react-s-alert/dist/s-alert-css-effects/slide.css';
+import BankTable from './BankTable.jsx'
+import BankForm from './BankForm.jsx'
 
 class Adminview extends React.Component {
     constructor(props) {
@@ -16,7 +23,7 @@ class Adminview extends React.Component {
         this.loadBanksFromServer();
     }
 
-    // Load students from database
+
     loadBanksFromServer() {
         fetch('http://localhost:8080/api/banks',
             {credentials: 'same-origin'})
@@ -27,7 +34,7 @@ class Adminview extends React.Component {
                 });
             });
     }
-    // Delete student
+
     deleteBank(bank) {
         fetch (bank._links.self.href,
             { method: 'DELETE',
@@ -35,10 +42,16 @@ class Adminview extends React.Component {
             .then(
                 res => this.loadBanksFromServer()
             )
+            // .then(() => {
+            //     Alert.success('Bank deleted', {
+            //         position: 'bottom-left',
+            //         effect: 'slide'
+            //     });
+            // })
             .catch( err => console.error(err))
     }
 
-    // Create new student
+
     createBank(bank) {
         fetch('http://localhost:8080/api/banks',
             {   method: 'POST',
@@ -54,7 +67,7 @@ class Adminview extends React.Component {
             .catch( err => console.error(err))
     }
 
-    // Update student
+
     updateBank(bank) {
         fetch(bank.link,
             {   method: 'PUT',
@@ -75,155 +88,10 @@ class Adminview extends React.Component {
             <div>
                 <BankTable banks={this.state.banks} deleteBank={this.deleteBank}  updateBank={this.updateBank} />
                 <BankForm createBank={this.createBank}/>
+                {/*<Alert stack={true} timeout={2000} />*/}
             </div>
         );
     }
 }
-
-class BankTable extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
-    render() {
-        var banks = this.props.banks.map(bank =>
-            <Bank key={bank._links.self.href} bank={bank} deleteBank={this.props.deleteBank} updateBank={this.props.updateBank} />
-        );
-
-        return (
-
-            <div>
-                <table>
-                    <thead>
-                    <tr>
-                        <th>Name</th><th> </th>
-                    </tr>
-                    </thead>
-                    <tbody>{banks}</tbody>
-                </table>
-            </div>);
-    }
-}
-
-class Bank extends React.Component {
-    constructor(props) {
-        super(props);
-        this.deleteBank = this.deleteBank.bind(this);
-
-    }
-    deleteBank() {
-        this.props.deleteBank(this.props.bank);
-    }
-
-    render() {
-        return (
-            <tr>
-                <td>{this.props.bank.name}</td>
-                <td>
-                    <button onClick={this.deleteBank}>Delete</button>
-                </td>
-                <td>
-                    <BankUpdateForm updateBank={this.props.updateBank} bank={this.props.bank}/>
-                </td>
-            </tr>
-        );
-    }
-}
-
-class BankForm extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {bankName: ''};
-        this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleChange = this.handleChange.bind(this);
-    }
-
-    handleChange(event) {
-        this.setState(
-            {[event.target.name]: event.target.value}
-        );
-    }
-
-    handleSubmit(event) {
-        event.preventDefault();
-        console.log("Bank Name: " + this.state.bankName);
-        var newBank = {name: this.state.bankName};
-        this.props.createBank(newBank);
-        this.refs.simpleDialog.hide();
-    }
-
-    render() {
-        return (
-            <div>
-                <SkyLight hideOnOverlayClicked ref="simpleDialog">
-                    <div className="panel panel-default">
-                        <div className="panel-heading">Create bank</div>
-                        <div className="panel-body">
-                            <form className="form">
-                                <div className="col-md-4">
-                                    <input type="text" placeholder="Name" className="form-control"  name="bankName" onChange={this.handleChange}/>
-                                </div>
-                                <div className="col-md-2">
-                                    <button className="btn btn-primary" onClick={this.handleSubmit}>Save</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </SkyLight>
-                <div className="col-md-2">
-                    <button className="btn btn-primary" onClick={() => this.refs.simpleDialog.show()}>Add new bank</button>
-                </div>
-            </div>
-        );
-    }
-}
-
-class BankUpdateForm extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {bankName: this.props.bank.name};
-        this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleChange = this.handleChange.bind(this);
-    }
-
-    handleChange(event) {
-        this.setState(
-            {[event.target.name]: event.target.value}
-        );
-    }
-
-    handleSubmit(event) {
-        event.preventDefault();
-        var updBank = {link: this.props.bank._links.self.href ,name: this.state.bankName};
-        this.props.updateBank(updBank);
-        this.refs.editDialog.hide();
-    }
-
-    render() {
-        return (
-            <div>
-                <SkyLight hideOnOverlayClicked ref="editDialog">
-                    <div className="panel panel-default">
-                        <div className="panel-heading">Edit bank</div>
-                        <div className="panel-body">
-                            <form className="form">
-                                <div className="col-md-4">
-                                    <input type="text" placeholder="Bank Name" className="form-control"  name="bankName" value={this.state.bankName} onChange={this.handleChange}/>
-                                </div>
-                                <div className="col-md-2">
-                                    <button className="btn btn-primary" onClick={this.handleSubmit}>Save</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </SkyLight>
-                <div>
-                    <button className="btn btn-primary btn-xs" onClick={() => this.refs.editDialog.show()}>Edit</button>
-                </div>
-            </div>
-        );
-    }
-}
-
 
 export default Adminview ;
