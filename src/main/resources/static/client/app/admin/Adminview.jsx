@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 // import '../../../css/App.css';
 // import { Navbar, NavItem, Nav, Grid, Row, Col } from "react-bootstrap";
 // import "bootstrap/dist/css/bootstrap.css"
-// import Alert from 'react-s-alert';
-// import 'react-s-alert/dist/s-alert-default.css';
-// import 'react-s-alert/dist/s-alert-css-effects/slide.css';
+import Alert from 'react-s-alert';
+import 'react-s-alert/dist/s-alert-default.css';
+import 'react-s-alert/dist/s-alert-css-effects/slide.css';
 import BankTable from './BankTable.jsx'
 import BankForm from './BankForm.jsx'
 
@@ -42,12 +42,12 @@ class Adminview extends React.Component {
             .then(
                 res => this.loadBanksFromServer()
             )
-            // .then(() => {
-            //     Alert.success('Bank deleted', {
-            //         position: 'bottom-left',
-            //         effect: 'slide'
-            //     });
-            // })
+            .then(() => {
+                Alert.success('Bank deleted', {
+                    position: 'bottom-left',
+                    effect: 'slide'
+                });
+            })
             .catch( err => console.error(err))
     }
 
@@ -88,7 +88,7 @@ class Adminview extends React.Component {
             <div>
                 <BankTable banks={this.state.banks} deleteBank={this.deleteBank}  updateBank={this.updateBank} />
                 <BankForm createBank={this.createBank}/>
-                {/*<Alert stack={true} timeout={2000} />*/}
+                <Alert stack={true} timeout={2000} />
             </div>
         );
     }
