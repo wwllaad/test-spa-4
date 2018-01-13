@@ -30,12 +30,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                             "/js/**",
                             "/css/**",
                             "/img/**",
-                            "/webjars/**").permitAll()
-                    .antMatchers("/user/**").access("hasRole('USER') or hasRole('ADMIN')")
+                            "/webjars/**",
+                            "/public/**").permitAll()
+                    .antMatchers("/user/**", "/api/**").access("hasRole('USER') or hasRole('ADMIN')")
                     .antMatchers("/admin/**").hasRole("ADMIN")
-                    .antMatchers("/api/banks/**").permitAll()
                     .anyRequest().authenticated()
                 .and()
+                .csrf().disable()
                 .formLogin()
                     .loginPage("/login")
                     .permitAll()
