@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Table } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.css"
 
 import Bank from './Bank.jsx'
@@ -17,10 +16,10 @@ class BankTable extends React.Component {
         return (
 
             <div>
-                <table class="table" className="table table-striped">
-                    <thead class="thead-dark">
+                <table className="table table-striped">
+                    <thead>
                     <tr>
-                        <th>Name</th>
+                        <th>Name</th><th>Phone number</th><th>Headquarters</th>
                     </tr>
                     </thead>
                     <tbody>{banks}</tbody>

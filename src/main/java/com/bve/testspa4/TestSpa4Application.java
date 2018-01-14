@@ -24,12 +24,14 @@ public class TestSpa4Application {
 			userRepositoryrepository.save(user1);
 			userRepositoryrepository.save(user2);
 
-			Bank bank1 = new Bank("ABR");
-			Bank bank2 = new Bank("RNCB");
-			Bank bank3 = new Bank("Genbank");
+			Bank bank1 = new Bank("ABR", "8-812-335-85-00","Moscow" );
+			Bank bank2 = new Bank("RNCB", "8-800-234-27-27", "Simferopol");
+			Bank bank3 = new Bank("Genbank","8-800-333-55-45","Simferopol");
+			Bank bank4 = new Bank("DD", "8-800-555-35-35","Moscow" );
 			bankRepository.save(bank1);
 			bankRepository.save(bank2);
 			bankRepository.save(bank3);
+			bankRepository.save(bank4);
 		};
 	}
 }

@@ -12,27 +12,13 @@ public class Bank {
     @Column(name = "name")
     private String name;
 
-    @Override
-    public String toString() {
-        return "Bank{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
-    }
+    @Column(name = "phone")
+    private String phone;
+
+    @Column(name = "headquarters")
+    private String headquarters;
 
     public Bank() {
-    }
-
-    public Bank(String name) {
-        this.name = name;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -41,5 +27,37 @@ public class Bank {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getHeadquarters() {
+        return headquarters;
+    }
+
+    public void setHeadquarters(String headquarters) {
+        this.headquarters = headquarters;
+    }
+
+    @Override
+    public String toString() {
+        return "Bank{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", phone='" + phone + '\'' +
+                ", headquarters='" + headquarters + '\'' +
+                '}';
+    }
+
+    public Bank(String name, String phone, String headquarters) {
+        this.name = name;
+        this.phone = phone;
+        this.headquarters = headquarters;
     }
 }

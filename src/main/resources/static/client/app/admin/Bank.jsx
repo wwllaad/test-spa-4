@@ -17,6 +17,8 @@ class Bank extends React.Component {
         return (
             <tr>
                 <td>{this.props.bank.name}</td>
+                <td>{this.props.bank.phone}</td>
+                <td>{this.props.bank.headquarters}</td>
                 <td>
                     <button className="btn btn-danger btn-xs" onClick={this.deleteBank}>Delete</button>
                 </td>
