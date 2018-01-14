@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-// import '../../../css/App.css';
-// import { Navbar, NavItem, Nav, Grid, Row, Col } from "react-bootstrap";
-// import "bootstrap/dist/css/bootstrap.css"
+import { Table } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.css"
 import Bank from './Bank.jsx'
 
 class BankTable extends React.Component {

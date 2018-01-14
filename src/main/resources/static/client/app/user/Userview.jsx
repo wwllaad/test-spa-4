@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Bank from './Bank.jsx'
 import BankTable from './BankTable.jsx'
 
 class Userview extends React.Component {

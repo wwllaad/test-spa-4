@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-// import '../../../css/App.css';
-// import { Navbar, NavItem, Nav, Grid, Row, Col } from "react-bootstrap";
-// import "bootstrap/dist/css/bootstrap.css"
+import { Button } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.css"
 import BankUpdateForm from './BankUpdateForm.jsx'
 
 class Bank extends React.Component {

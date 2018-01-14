@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-// import '../../../css/App.css';
-// import { Navbar, NavItem, Nav, Grid, Row, Col } from "react-bootstrap";
-// import "bootstrap/dist/css/bootstrap.css"
+
+import { Button, Col } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.css"
 import SkyLight from 'react-skylight';
 
 class BankForm extends React.Component {

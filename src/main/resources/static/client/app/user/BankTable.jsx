@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
-// import '../../../css/App.css';
-// import { Navbar, NavItem, Nav, Grid, Row, Col } from "react-bootstrap";
-// import "bootstrap/dist/css/bootstrap.css"
-// import Alert from 'react-s-alert';
-// import 'react-s-alert/dist/s-alert-default.css';
-// import 'react-s-alert/dist/s-alert-css-effects/slide.css';
+import { Table } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.css"
+
 import Bank from './Bank.jsx'
 
 class BankTable extends React.Component {
@@ -20,8 +17,8 @@ class BankTable extends React.Component {
         return (
 
             <div>
-                <table className="table table-striped">
-                    <thead>
+                <table class="table" className="table table-striped">
+                    <thead class="thead-dark">
                     <tr>
                         <th>Name</th>
                     </tr>
